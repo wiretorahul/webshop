@@ -1,0 +1,54 @@
+<div class='row home'>
+    <!-- showing inventory items -->
+    <div class='col-md-8'>
+        <li class='item' *ngFor="let item of inventory; let i = index">
+            <div class='row'>
+                <div class='col-md-6'>
+                    <div class='item-main'>
+                        <div>
+                            <a routerLink='/item/{{i+1}}'>
+                                <img src="assets/shoes/{{item.imagename}}" alt="image not found" height="150px" width="150px">
+                                <!-- <img src="assets/shoes/{{item.imagename}}" alt="image not found" height="150px" width="150px"> -->
+                            </a>
+                        </div>
+                        <div>
+                            <a class='item-name' routerLink='/item/{{i+1}}'>{{item.name}}</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class='col-md-6'>
+                    <div class='item-sub'>
+                        <div>
+                            <p>Price : {{item.price}}</p>
+                        </div>
+                        <div>
+                            <span>Quantity : </span>
+                            <input type="number" min="0" [(ngModel)]='item.quantity'>
+                        </div>
+                        <div>
+                            <button *ngIf='!item.selected' class='btn btn-success cart-btn' (click)='addToCart(i)'>Add to Cart</button>
+                            <button *ngIf='item.selected' class='btn btn-danger cart-btn' (click)='removeFromCart(i)'>Remove from Cart</button>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </li>
+
+    </div>
+    <!-- Total Prize -->
+    <div class='col-md-4'>
+        <br>
+        <div>
+            <h3>Total Prize : {{totalPrize}}</h3>
+        </div>
+        <div>
+            <a routerLink="/checkout">
+                <input type="button" class='btn btn-success' value="Proceed to Checkout" (click)='checkout = true'>
+            </a>
+        </div>
+    </div>
+</div>
